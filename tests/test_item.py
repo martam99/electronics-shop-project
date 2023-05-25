@@ -1,4 +1,6 @@
 """Здесь надо написать тесты с использованием pytest для модуля item."""
+import pytest
+
 from src.item import Item
 
 
@@ -25,4 +27,26 @@ def test_item_price():
     assert item3.apply_discount() == 4.0
     assert item4.apply_discount() == 20.0
     assert item5.apply_discount() == 30.0
+
+    # Создаём экземпляр класса для проверки
+    item6 = Item('Телефон', 10000, 5)
+    # Проверяем геттер, который выводит имя товара
+    assert item6.keyname == "Телефон"
+    # Проверяем сеттер, в котором символы наименования товара не превышают 10
+    with pytest.raises(Exception):
+        assert item6.keyname == 'Iphone_x_pro'
+    # Проверяем класс-метод, который создаёт экземпляр класса из файла csv
+    Item.instantiate_from_csv()
+    assert len(Item.all) == 5
+
+    item1 = Item.all[0]
+    assert item1.name == 'Смартфон'
+
+    # Проверяем статический метод, который возвращает число из числа-строки
+    assert Item.string_to_number('5.9') == 5
+    assert Item.string_to_number('7') == 7
+    assert Item.string_to_number('97.5') == 97
+
+
+
 
