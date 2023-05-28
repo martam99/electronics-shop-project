@@ -16,11 +16,17 @@ class Item:
         :param price: Цена за единицу товара.
         :param quantity: Количество товара в магазине.
         """
-        self.name = name
+        self.__name = name
         self.price = price
         self.quantity = quantity
 
-    def calculate_total_price(self) -> float:
+    def __repr__(self):
+        return f"{self.__class__.__name__}{self.__name, self.price, self.quantity}"
+
+    def __str__(self):
+        return self.__name
+
+    def calculate_total_price(self) -> int:
         """
         Рассчитывает общую стоимость конкретного товара в магазине.
 
@@ -35,11 +41,13 @@ class Item:
         return self.price * Item.pay_rate
 
     @property
-    def keyname(self):
-        return self.name
+    def name(self):
+        """Геттер, который выводит имя товара"""
+        return self.__name
 
-    @keyname.setter
-    def keyname(self, add_name: str):
+    @name.setter
+    def name(self, add_name: str):
+        """Cеттер, в котором символы наименования товара не превышают 10"""
         if len(add_name) <= 10:
             self.name = add_name
         else:
@@ -58,9 +66,6 @@ class Item:
                 item_1 = Item(name, price, quantity)
                 cls.all.append(item_1)
             print(cls.all)
-
-    def __repr__(self):
-        return f"name={self.name}, price={self.price}, quantity={self.quantity}"
 
     @staticmethod
     def string_to_number(string: str):

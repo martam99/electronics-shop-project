@@ -31,10 +31,10 @@ def test_item_price():
     # Создаём экземпляр класса для проверки
     item6 = Item('Телефон', 10000, 5)
     # Проверяем геттер, который выводит имя товара
-    assert item6.keyname == "Телефон"
+    assert item6.name == "Телефон"
     # Проверяем сеттер, в котором символы наименования товара не превышают 10
     with pytest.raises(Exception):
-        assert item6.keyname == 'Iphone_x_pro'
+        assert item6.name == 'Iphone_x_pro'
     # Проверяем класс-метод, который создаёт экземпляр класса из файла csv
     Item.instantiate_from_csv()
     assert len(Item.all) == 5
@@ -46,6 +46,18 @@ def test_item_price():
     assert Item.string_to_number('5.9') == 5
     assert Item.string_to_number('7') == 7
     assert Item.string_to_number('97.5') == 97
+
+    #Проверяем магические методы `__repr__` и `__str__`
+    assert repr(item1) == "Item('Смартфон', 100.0, 1)"
+    assert str(item1) == "Смартфон"
+
+    assert repr(item2) == "Item('Ноутбук', 1000, 3)"
+    assert str(item2) == "Ноутбук"
+
+    assert repr(item3) == "Item('Кабель', 10, 5)"
+    assert str(item3) == "Кабель"
+
+
 
 
 
