@@ -20,6 +20,7 @@ class Item:
         self.price = price
         self.quantity = quantity
 
+
     def __repr__(self):
         return f"{self.__class__.__name__}{self.__name, self.price, self.quantity}"
 
@@ -49,7 +50,7 @@ class Item:
     def name(self, add_name: str):
         """Cеттер, в котором символы наименования товара не превышают 10"""
         if len(add_name) <= 10:
-            self.name = add_name
+            self.__name = add_name
         else:
             raise Exception("Длина наименования товара превышает 10 символов")
 
@@ -73,10 +74,6 @@ class Item:
         num = float(string)
         int_num = int(num)
         return int_num
-
-
-
-
 
 
 
