@@ -47,7 +47,7 @@ def test_item_price():
     assert Item.string_to_number('7') == 7
     assert Item.string_to_number('97.5') == 97
 
-    #Проверяем магические методы `__repr__` и `__str__`
+    # Проверяем магические методы `__repr__` и `__str__`
     assert repr(item1) == "Item('Смартфон', 100.0, 1)"
     assert str(item1) == "Смартфон"
 

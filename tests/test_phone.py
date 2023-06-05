@@ -28,3 +28,5 @@ def test_phone():
         Phone.__add__(phone1.quantity+544)
         assert str(e.value) == "Exception: Нельзя сложить атрибуты экземпляров не iPhone и Item классов"
 
+    with pytest.raises(Exception):
+        assert phone1.number_of_sim == 0
